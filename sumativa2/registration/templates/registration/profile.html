@@ -6,14 +6,22 @@
         {% csrf_token %}
         
         {% if user.userprofile %}
+            <!-- Assuming a user profile exists -->
             <h3>Sesión iniciada como:</h3>
             <h1>{{ user.username }}</h1>
 
-            {{ request.user.photo.url }}
-
+            {% if user.userprofile.photo %}
+                <img src="{{ user.userprofile.photo.url }}">
+                <h2>Si hay foto</h2>
+            {% else %}        
+                <!-- Assuming no photo exists in the user profile -->
+                <h2> no Hay foto </h2>
+            {% endif %}
         {% else %}
+            <!-- Assuming no user profile exists -->
             <p>No hay perfil asociado.</p>
         {% endif %}
+
 
     {{ form.as_p }}
 
