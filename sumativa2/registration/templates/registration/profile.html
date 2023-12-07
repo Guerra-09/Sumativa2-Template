@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% if user.userprofile %}
+            <h3>Sesión iniciada como:</h3>
+            <h1>{{ user.username }}</h1>
+
+            {{ request.user.photo.url }}
+
+        {% else %}
+            <p>No hay perfil asociado.</p>
+        {% endif %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-dark">Actualizar</button>
+
+    
+</form>
+
+{% endblock %}
